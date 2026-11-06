@@ -6,4 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.143.3",
+    "mediapipe>=1.2.2",
+    "numpy>=2.4.6",
+    "scipy>=1.17.1",
 ]
