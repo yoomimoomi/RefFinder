@@ -1,12 +1,12 @@
-from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routes import images, health
 
-app = FastAPI()
+app = FastAPI(title="Supabase Python Backend")
 
 origins = [
-    "http://localhost:5173",  
-    "http://localhost:3000",  
+    "http://localhost:5173",
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
@@ -17,8 +17,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class MessageItem(BaseModel):
-    text: str
+app.include_router(images.router)
+app.include_router(health.router)
+
 
 @app.get("/")
 async def root():
