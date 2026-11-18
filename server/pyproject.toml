@@ -9,4 +9,5 @@ dependencies = [
     "mediapipe>=1.2.2",
     "numpy>=2.4.6",
     "scipy>=1.17.1",
+    "supabase>=2.34.1",
 ]

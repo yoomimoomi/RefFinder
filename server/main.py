@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import images, health
+from routes import images, health, pose
 
 app = FastAPI(title="Supabase Python Backend")
 
@@ -19,6 +19,7 @@ app.add_middleware(
 
 app.include_router(images.router)
 app.include_router(health.router)
+app.include_router(pose.router)
 
 
 @app.get("/")

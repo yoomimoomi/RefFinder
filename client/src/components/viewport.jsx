@@ -49,6 +49,9 @@ const TIPS = {
   footL: vec(fromFbx([-2.75, 1, 7])).sub(vec(REST_JOINTS.footL)),
   footR: vec(fromFbx([2.75, 1, 7])).sub(vec(REST_JOINTS.footR)),
 }
+
+// Top of the head mesh, which is what LSP labels as the head joint.
+const HEAD_TOP = vec(fromFbx([0, 56.26, 0])).sub(vec(REST_JOINTS.head))
 const quatFromDeg = ([x, y, z] = ZERO) => new THREE.Quaternion().setFromEuler(new THREE.Euler(x * DEG, y * DEG, z * DEG))
 const degFromQuat = (q) => { const e = new THREE.Euler().setFromQuaternion(q); return [e.x / DEG, e.y / DEG, e.z / DEG] }
 
@@ -69,6 +72,14 @@ function poseMatrices(rotations) {
 
 const positionOf = (m) => new THREE.Vector3().setFromMatrixPosition(m)
 const quaternionOf = (m) => { const q = new THREE.Quaternion(); m.decompose(new THREE.Vector3(), q, new THREE.Vector3()); return q }
+
+// eslint-disable-next-line react-refresh/only-export-components
+export function poseJointPositions(rotations) {
+  const m = poseMatrices(rotations)
+  const points = Object.fromEntries(JOINT_ORDER.map((key) => [key, positionOf(m[key]).toArray()]))
+  points.headTop = HEAD_TOP.clone().applyMatrix4(m.head).toArray()
+  return points
+}
 
 function aimPoint(matrices, key) {
   return CHILD[key] ? positionOf(matrices[CHILD[key]]) : TIPS[key].clone().applyMatrix4(matrices[key])
