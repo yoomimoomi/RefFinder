@@ -38,12 +38,6 @@ export default function PoseFinder() {
       setExporting(false)
     }
   }
-  //New code: Reruns pose search whenever any limbs are moved
-  useEffect(() => {
-    if (!searched) return
-    const t = setTimeout(findSimilar, 400)
-    return () => clearTimeout(t)
-  }, [rotations])
 
   return <main className="app-shell">
     <header className="topbar"><div className="brand"><div className="brand-mark"><Move3d size={18} /></div><span>POSEFINDER</span></div><nav><a className="active">Workspace</a><a>Library</a><a>About</a></nav><button className="icon-button" aria-label="Adjust settings"><SlidersHorizontal size={18} /></button></header>
@@ -51,7 +45,7 @@ export default function PoseFinder() {
       <div className="model-panel"><div className="panel-head"><div><span className="label">POSE EDITOR</span><h2>Mannequin</h2></div><button className="reset" onClick={() => applyPreset(0)}><RotateCcw size={14} /> Reset</button></div><Viewport rotations={rotations} onRotationsChange={editRotations} selected={selected} onSelect={setSelected} /><JointControls joint={selected} rotations={rotations} onRotationsChange={editRotations} /><div className="pose-controls"><span>PRESETS</span><button className={pose === 0 ? 'selected' : ''} onClick={() => applyPreset(0)}>Neutral</button><button className={pose === 1 ? 'selected' : ''} onClick={() => applyPreset(1)}>Raised</button><button className={pose === 2 ? 'selected' : ''} onClick={() => applyPreset(2)}>Open</button></div></div>
       {/* <div className="results-panel"><div className="results-head"><div><span className="label">MATCHING REFERENCES</span><h2>{searched ? 'Your results' : 'Ready when you are'}</h2></div>{searched && <span className="result-count">06 MATCHES</span>}</div>{!searched ? <div className="empty-state"><div className="empty-lines"><i /><i /><i /><i /></div><p>Move the limbs into a pose<br />and search for similar images.</p><button className="search-button" onClick={findSimilar} disabled={exporting}><Search size={17} /> {exporting ? 'Exporting...' : 'Find similar poses'}</button>{exportError && <p className="export-error">{exportError}</p>}</div> : <div className="results-grid">{resultImages.map((image) => <article className="result-card" key={image.src}><div className="result-image"><img src={image.src} alt={image.label} /><span>{image.score}</span></div><p>{image.label}</p></article>)}</div>}</div> */}
       {
-        <div className="results-panel"><div className="results-head"><div><span className="label">MATCHING REFERENCES</span><h2>{searched ? 'Your results' : 'Ready when you are'}</h2></div>{searched && <span className="result-count">{String(results.length).padStart(2, '0')} MATCHES</span>}</div>{!searched ? <div className="empty-state"><div className="empty-lines"><i /><i /><i /><i /></div><p>Move the limbs into a pose<br />and search for similar images.</p><button className="search-button" onClick={findSimilar} disabled={exporting}><Search size={17} /> {exporting ? 'Exporting...' : 'Find similar poses'}</button>{exportError && <p className="export-error">{exportError}</p>}</div> : <div className="results-grid">{results.map((m) => <article className="result-card" key={m.image}>
+        <div className="results-panel"><div className="results-head"><div><span className="label">MATCHING REFERENCES</span><h2>{searched ? 'Your results' : 'Ready when you are'}</h2></div>{searched && <span className="result-count">{String(results.length).padStart(2, '0')} MATCHES</span>}<button className="search-button" onClick={findSimilar} disabled={exporting}><Search size={17} /> {exporting ? 'Exporting...' : 'Find similar poses'}</button></div>{exportError && <p className="export-error">{exportError}</p>}{!searched ? <div className="empty-state"><div className="empty-lines"><i /><i /><i /><i /></div><p>Move the limbs into a pose<br />and search for similar images.</p></div> : <div className="results-grid">{results.map((m) => <article className="result-card" key={m.image}>
           <div className="result-image"><img src={m.url} alt={m.image} /><span>{m.score}%</span></div>
           <p>{m.image}</p> {/* (This line and the 2 above) 3 new lines here. Now gets and displays all the images we have stored */}
         </article>)}</div>}</div>}
