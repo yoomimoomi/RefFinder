@@ -30,9 +30,11 @@ build/
 dist/
 wheels/
 *.egg-info
+.python-version
 
 # Virtual environments
-.venv
+venv/
+.venv/
 
 # Env File
 .env
