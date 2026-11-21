@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-from fastapi import APIRouter
-from pydantic import BaseModel, Field
-
-router = APIRouter(prefix="/pose", tags=["pose"])
-
-=======
 """POST /pose using scikit-learn's NearestNeighbors.
 
 The frontend sends the mannequin's 14 joint positions in LSP order. They are normalized
@@ -53,7 +46,6 @@ TREE = {
 BONES = list(TREE)
 MIRROR_ORDER = [5, 4, 3, 2, 1, 0, 11, 10, 9, 8, 7, 6, 12, 13]   # swaps every left joint with its right one
 
->>>>>>> 38c0133 (Implement backend KNN and display images on skeleton movement)
 
 class Pose(BaseModel):
     # 14 joints in LSP order, mannequin model space (y up)
