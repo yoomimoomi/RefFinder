@@ -50,13 +50,6 @@ MIRROR_ORDER = [5, 4, 3, 2, 1, 0, 11, 10, 9, 8, 7, 6, 12, 13]   # swaps every le
 class Pose(BaseModel):
     # 14 joints in LSP order, mannequin model space (y up)
     joints: list[tuple[float, float, float]] = Field(min_length=14, max_length=14)
-<<<<<<< HEAD
-
-
-@router.post("")
-async def receive_pose(pose: Pose):
-    return {"status": "ok", "joints": pose.joints}
-=======
     top: int = Field(6, ge=1, le=24)
 
 
@@ -174,4 +167,3 @@ def find_similar(body: Pose, supabase: Client = Depends(get_supabase)):
             for name, d, mirrored in found
         ]
     }
->>>>>>> 38c0133 (Implement backend KNN and display images on skeleton movement)
