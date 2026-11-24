@@ -1,6 +1,6 @@
 import { poseJointPositions } from '@/components/viewport'
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL ?? 'https://ref-finder-server-flax.vercel.app'
 
 // joint order. The mannequin's `L` joints are on the viewer's left, which is the person's right.
 const JOINT_ORDER = ['footL', 'kneeL', 'hipL', 'hipR', 'kneeR', 'footR', 'handL', 'elbowL', 'shoulderL', 'shoulderR', 'elbowR', 'handR', 'neck', 'headTop']
