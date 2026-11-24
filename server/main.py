@@ -7,7 +7,7 @@ app = FastAPI(title="Supabase Python Backend")
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://ref-finder-server-flax.vercel.app",
+    "https://ref-finder-omega.vercel.app",
 ]
 
 app.add_middleware(
