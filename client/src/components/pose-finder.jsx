@@ -3,14 +3,6 @@ import { Search, RotateCcw, SlidersHorizontal, Sparkles, Move3d } from 'lucide-r
 import Viewport, { JointControls, presetRotations } from '@/components/viewport'
 import { exportPose } from '@/components/pose-export'
 
-// const resultImages = [
-//   { src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80', label: 'Editorial stance', score: '98%' },
-//   { src: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80', label: 'Relaxed portrait', score: '94%' },
-//   { src: 'https://images.unsplash.com/photo-1539579514369-3d7d1ebd3cbb?auto=format&fit=crop&w=700&q=80', label: 'Street pose', score: '91%' },
-//   { src: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=700&q=80', label: 'Studio reference', score: '88%' },
-//   { src: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80', label: 'Fashion motion', score: '84%' },
-//   { src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80', label: 'Seated balance', score: '81%' },
-// ]
 
 export default function PoseFinder() {
   const [searched, setSearched] = useState(false)
